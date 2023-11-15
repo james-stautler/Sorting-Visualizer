@@ -4,7 +4,7 @@ JC = javac
 .java.class: 
 	$(JC) $(JFLAGS) $*.java
 
-CLASSES = SortVis.java AlgoChoice.java
+CLASSES = SortVis.java AlgoChoice.java Bar.java
 
 default: classes
 

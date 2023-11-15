@@ -30,13 +30,5 @@ public class AlgoChoice implements ActionListener {
     public JComboBox<String> getComponent() {
         return this.algoButton;
     }
-
-    public void setLocation(int x, int y) {
-        algoButton.setLocation(x, y);
-    }
-
-    public void setSize(int width, int height) {
-        algoButton.setSize(width, height);
-    }
     
 }
