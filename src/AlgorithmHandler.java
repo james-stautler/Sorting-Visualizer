@@ -19,17 +19,7 @@ public class AlgorithmHandler {
                 if (barCollection.getBars().get(j).getHeight() > barCollection.getBars().get(j + 1).getHeight()) {
                     barCollection.swap(j, j + 1);
                     swapped = true;
-                    sortVisualizer.paintImmediately(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                    sortVisualizer.paintImmediately(barCollection.getBars().get(j).getX(), 
-                                                    barCollection.getBars().get(j).getY(), 
-                                                    barCollection.getBars().get(j).getWidth(),
-                                                    barCollection.getBars().get(j).getHeight());
-                    sortVisualizer.paintImmediately(barCollection.getBars().get(j+1).getX(), 
-                                                    barCollection.getBars().get(j+1).getY(), 
-                                                    barCollection.getBars().get(j+1).getWidth(),
-                                                    barCollection.getBars().get(j+1).getHeight());
-                    Thread.sleep(TIMEOUT);
-                }
+                    barCollection.repaint(sortVisualizer);                }
             }
             if (!swapped) {
                 break;
@@ -43,25 +33,11 @@ public class AlgorithmHandler {
             int j =  i - 1;
             while (j >= 0 && barCollection.getBars().get(j).getHeight() > key) {
                 barCollection.swap(j, j + 1);
-                sortVisualizer.paintImmediately(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                sortVisualizer.paintImmediately(barCollection.getBars().get(j).getX(), 
-                                                barCollection.getBars().get(j).getY(), 
-                                                barCollection.getBars().get(j).getWidth(),
-                                                barCollection.getBars().get(j).getHeight());
-                sortVisualizer.paintImmediately(barCollection.getBars().get(j+1).getX(), 
-                                                barCollection.getBars().get(j+1).getY(), 
-                                                barCollection.getBars().get(j+1).getWidth(),
-                                                barCollection.getBars().get(j+1).getHeight());
-                Thread.sleep(TIMEOUT);
+                barCollection.repaint(sortVisualizer);
                 j--;
             }
             barCollection.getBars().get(j + 1).setHeight(key);
-            sortVisualizer.paintImmediately(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            sortVisualizer.paintImmediately(barCollection.getBars().get(j+1).getX(), 
-                                                barCollection.getBars().get(j+1).getY(), 
-                                                barCollection.getBars().get(j+1).getWidth(),
-                                                barCollection.getBars().get(j+1).getHeight());
-            Thread.sleep(TIMEOUT);
+            barCollection.repaint(sortVisualizer);
         }
     }
 }

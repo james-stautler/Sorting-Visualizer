@@ -58,4 +58,12 @@ public class Collection {
         bars.get(index2).setHeight(height1);
         bars.get(index2).setY(y1);
     }
+
+    public void repaint(SortVis sortVisualizer) {
+        sortVisualizer.paintImmediately(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        for (int i = 0; i < bars.size(); i++) {
+            Bar bar = bars.get(i);
+            sortVisualizer.paintImmediately(bar.getX(), bar.getY(), bar.getWidth(), bar.getHeight());
+        }
+    }
 }
