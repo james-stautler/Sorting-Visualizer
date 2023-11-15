@@ -36,4 +36,32 @@ public class AlgorithmHandler {
             }
         }
     }
+
+    public void InsertionSort(SortVis sortVisualizer) throws InterruptedException {
+        for (int i = 1; i < barCollection.getBars().size(); i++) {
+            int key = barCollection.getBars().get(i).getHeight();
+            int j =  i - 1;
+            while (j >= 0 && barCollection.getBars().get(j).getHeight() > key) {
+                barCollection.swap(j, j + 1);
+                sortVisualizer.paintImmediately(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                sortVisualizer.paintImmediately(barCollection.getBars().get(j).getX(), 
+                                                barCollection.getBars().get(j).getY(), 
+                                                barCollection.getBars().get(j).getWidth(),
+                                                barCollection.getBars().get(j).getHeight());
+                sortVisualizer.paintImmediately(barCollection.getBars().get(j+1).getX(), 
+                                                barCollection.getBars().get(j+1).getY(), 
+                                                barCollection.getBars().get(j+1).getWidth(),
+                                                barCollection.getBars().get(j+1).getHeight());
+                Thread.sleep(TIMEOUT);
+                j--;
+            }
+            barCollection.getBars().get(j + 1).setHeight(key);
+            sortVisualizer.paintImmediately(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            sortVisualizer.paintImmediately(barCollection.getBars().get(j+1).getX(), 
+                                                barCollection.getBars().get(j+1).getY(), 
+                                                barCollection.getBars().get(j+1).getWidth(),
+                                                barCollection.getBars().get(j+1).getHeight());
+            Thread.sleep(TIMEOUT);
+        }
+    }
 }

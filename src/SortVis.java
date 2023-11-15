@@ -64,6 +64,13 @@ public class SortVis extends JPanel {
                         i.printStackTrace();
                     }
                 }
+                if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.INSERTION_SORT) {
+                    try {
+                        handler.InsertionSort(sortVisualizer);
+                    } catch (InterruptedException i) {
+                        i.printStackTrace();
+                    }
+                }
             }
         };
     
