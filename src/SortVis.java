@@ -17,7 +17,7 @@ public class SortVis extends JPanel {
     public static final int SCREEN_HEIGHT = 800;
     public static final int SCREEN_WIDTH = 1200;
 
-    public static final int NUM_BARS = 600;
+    public static final int NUM_BARS = 200;
     public static Collection barCollection = new Collection();
 
     @Override
@@ -31,6 +31,7 @@ public class SortVis extends JPanel {
 
         SortVis sortVisualizer = new SortVis();
         JFrame frame = new JFrame();
+        frame.setTitle("SORTING VISUALIZER")
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
@@ -53,6 +54,20 @@ public class SortVis extends JPanel {
 
         // Sort Button
         JButton sortButton = new JButton("Sort");
+        ActionListener sortActionListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                AlgorithmHandler handler = new AlgorithmHandler(barCollection);
+                if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.BUBBLE_SORT) {
+                    try {
+                        handler.BubbleSort(sortVisualizer);
+                    } catch (InterruptedException i) {
+                        i.printStackTrace();
+                    }
+                }
+            }
+        };
+    
+        sortButton.addActionListener(sortActionListener);
         sortVisualizer.add(sortButton);
 
         
@@ -60,4 +75,5 @@ public class SortVis extends JPanel {
 
         frame.setVisible(true);
     }
+
 }

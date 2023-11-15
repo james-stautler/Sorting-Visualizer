@@ -12,7 +12,7 @@ public class Collection {
     public final int MIN_HEIGHT = 50;
     public final int MAX_HEIGHT = 700;
 
-    ArrayList<Bar> bars;
+    public ArrayList<Bar> bars;
 
     public Collection() {
         bars = new ArrayList<Bar>();
@@ -41,5 +41,21 @@ public class Collection {
         for (int i = 0; i < bars.size(); i++) {
             bars.get(i).drawBar(g);
         }
+    }
+
+    public ArrayList<Bar> getBars() {
+        return this.bars;
+    }
+
+    public void swap(int index1, int index2) {
+        int height1 = bars.get(index1).getHeight();
+        int height2 = bars.get(index2).getHeight();
+        int y1 = bars.get(index1).getY();
+        int y2 = bars.get(index2).getY();
+
+        bars.get(index1).setHeight(height2);
+        bars.get(index1).setY(y2);
+        bars.get(index2).setHeight(height1);
+        bars.get(index2).setY(y1);
     }
 }

@@ -30,5 +30,9 @@ public class AlgoChoice implements ActionListener {
     public JComboBox<String> getComponent() {
         return this.algoButton;
     }
+
+    public Algorithm getAlgorithm() {
+        return this.algoChoice;
+    }
     
 }
