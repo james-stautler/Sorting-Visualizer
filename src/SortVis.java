@@ -31,7 +31,7 @@ public class SortVis extends JPanel {
 
         SortVis sortVisualizer = new SortVis();
         JFrame frame = new JFrame();
-        frame.setTitle("SORTING VISUALIZER")
+        frame.setTitle("SORTING VISUALIZER");
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
