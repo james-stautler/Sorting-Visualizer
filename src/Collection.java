@@ -47,6 +47,12 @@ public class Collection {
         return this.bars;
     }
 
+    public void changeCollectionColor(Color color) {
+        for (int i = 0; i < bars.size(); i++) {
+            bars.get(i).setColor(color);
+        }
+    }
+
     public void swap(int index1, int index2) {
         int height1 = bars.get(index1).getHeight();
         int height2 = bars.get(index2).getHeight();

@@ -1,3 +1,4 @@
+import java.awt.Color;
 
 public class AlgorithmHandler {
 
@@ -25,6 +26,8 @@ public class AlgorithmHandler {
                 break;
             }
         }
+        barCollection.changeCollectionColor(Color.GREEN);
+        barCollection.repaint(sortVisualizer);
     }
 
     public void InsertionSort(SortVis sortVisualizer) throws InterruptedException {
