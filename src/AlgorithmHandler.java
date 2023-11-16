@@ -17,17 +17,22 @@ public class AlgorithmHandler {
         for (int i = 0; i < barCollection.getBars().size() - 1; i++) {
             boolean swapped = false;
             for (int j = 0; j < barCollection.getBars().size() - 1 - i; j++) {
+                barCollection.getBars().get(j).setColor(Color.ORANGE);
+                barCollection.repaint(sortVisualizer);
                 if (barCollection.getBars().get(j).getHeight() > barCollection.getBars().get(j + 1).getHeight()) {
                     barCollection.swap(j, j + 1);
+                    barCollection.getBars().get(j).setColor(Color.BLACK);
+                    barCollection.getBars().get(j + 1).setColor(Color.ORANGE);
                     swapped = true;
-                    barCollection.repaint(sortVisualizer);                }
+                    barCollection.repaint(sortVisualizer);                
+                }
+                barCollection.changeCollectionColor(Color.BLACK);
+                barCollection.repaint(sortVisualizer);
             }
             if (!swapped) {
                 break;
             }
         }
-        barCollection.changeCollectionColor(Color.GREEN);
-        barCollection.repaint(sortVisualizer);
     }
 
     public void InsertionSort(SortVis sortVisualizer) throws InterruptedException {
@@ -42,5 +47,9 @@ public class AlgorithmHandler {
             barCollection.getBars().get(j + 1).setHeight(key);
             barCollection.repaint(sortVisualizer);
         }
+    }
+
+    public void MergeSort(SortVis sortVisualizer) throws InterruptedException {
+
     }
 }

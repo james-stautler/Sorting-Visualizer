@@ -13,6 +13,7 @@ public class SortVis extends JPanel {
 
     public static final Color WHITE = Color.WHITE;
     public static final Color BLACK = Color.BLACK;
+    public static final Color GREEN = Color.GREEN;
 
     public static final int SCREEN_HEIGHT = 800;
     public static final int SCREEN_WIDTH = 1200;
@@ -71,6 +72,8 @@ public class SortVis extends JPanel {
                         i.printStackTrace();
                     }
                 }
+                barCollection.changeCollectionColor(GREEN);
+                barCollection.repaint(sortVisualizer);
             }
         };
     
