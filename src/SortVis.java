@@ -64,7 +64,7 @@ public class SortVis extends JPanel {
                 if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.BUBBLE_SORT) {
                     try {
                         handler.bubbleSort(sortVisualizer);
-                        frame.setTitle("TOTAL COMPARISONS: " + handler.getNumComparisons());
+                        frame.setTitle("TOTAL SWAPS: " + handler.getNumChanges() + ", TIME: " + handler.getCompletionTime() + " seconds");
                         handler.resetStatistics();
                     } catch (InterruptedException i) {
                         i.printStackTrace();
@@ -73,7 +73,7 @@ public class SortVis extends JPanel {
                 if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.INSERTION_SORT) {
                     try {
                         handler.insertionSort(sortVisualizer);
-                        frame.setTitle("TOTAL COMPARISONS: " + handler.getNumComparisons());
+                        frame.setTitle("TOTAL SWAPS: " + handler.getNumChanges() + ", TIME: " + handler.getCompletionTime() + " seconds");
                         handler.resetStatistics();
                     } catch (InterruptedException i) {
                         i.printStackTrace();
@@ -81,7 +81,7 @@ public class SortVis extends JPanel {
                 }
                 if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.MERGE_SORT) {
                     handler.mergeSort(sortVisualizer, 0, barCollection.getBars().size() - 1);
-                    frame.setTitle("TOTAL COMPARISONS: " + handler.getNumComparisons());
+                    frame.setTitle("TOTAL SWAPS: " + handler.getNumChanges() + ", TIME: " + handler.getCompletionTime() + " seconds");
                     handler.resetStatistics();
                 }
                 barCollection.changeCollectionColor(GREEN);

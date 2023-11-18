@@ -10,33 +10,41 @@ public class AlgorithmHandler {
     
     Collection barCollection;
 
-    public int numComparisons = 0;
+    public int numChanges = 0;
+
+    public long completionTime = -1;
 
     public AlgorithmHandler(Collection c) {
         this.barCollection = c;
     }
 
     public void resetStatistics() {
-        this.numComparisons = 0;
+        this.numChanges = 0;
+        this.completionTime = -1;
     }
 
-    public int getNumComparisons() {
-        return this.numComparisons;
+    public int getNumChanges() {
+        return this.numChanges;
+    }
+
+    // Return completion time in seconds
+    public long getCompletionTime() {
+        return this.completionTime / 1000;
     }
 
     public void bubbleSort(SortVis sortVisualizer) throws InterruptedException {
+        long startTime = System.currentTimeMillis();
         for (int i = 0; i < barCollection.getBars().size() - 1; i++) {
             boolean swapped = false;
             for (int j = 0; j < barCollection.getBars().size() - 1 - i; j++) {
                 if (barCollection.getBars().get(j).getHeight() > barCollection.getBars().get(j + 1).getHeight()) {
-                    this.numComparisons++;
+                    this.numChanges++;
                     barCollection.swap(j, j + 1);
                     barCollection.getBars().get(j).setColor(Color.BLACK);
                     barCollection.getBars().get(j + 1).setColor(Color.ORANGE);
                     swapped = true;
                     barCollection.repaint(sortVisualizer);                
                 }
-                this.numComparisons++; // make up for the first comparison if the condition is not met
                 barCollection.changeCollectionColor(Color.BLACK);
                 barCollection.repaint(sortVisualizer);
             }
@@ -44,27 +52,31 @@ public class AlgorithmHandler {
                 break;
             }
         }
+        long endTime = System.currentTimeMillis();
+        this.completionTime = endTime - startTime;
     }
 
     public void insertionSort(SortVis sortVisualizer) throws InterruptedException {
+        long startTime = System.currentTimeMillis();
         for (int i = 1; i < barCollection.getBars().size(); i++) {
             int key = barCollection.getBars().get(i).getHeight();
             int j =  i - 1;
             barCollection.getBars().get(i).setColor(Color.ORANGE);
             barCollection.repaint(sortVisualizer);
             while (j >= 0 && barCollection.getBars().get(j).getHeight() > key) {
-                this.numComparisons++;
+                this.numChanges++;
                 barCollection.swap(j, j + 1);
                 barCollection.getBars().get(j).setColor(Color.ORANGE);
                 barCollection.getBars().get(j + 1).setColor(Color.BLACK);
                 barCollection.repaint(sortVisualizer);
                 j--;
             }
-            this.numComparisons++;
             barCollection.getBars().get(j + 1).setHeight(key);
             barCollection.changeCollectionColor(Color.BLACK);
             barCollection.repaint(sortVisualizer);
         }
+        long endTime = System.currentTimeMillis();
+        this.completionTime = endTime - startTime;
     }
 
     public void merge(SortVis sortVisualizer, int l, int m, int r) throws InterruptedException {
@@ -104,7 +116,7 @@ public class AlgorithmHandler {
                 j++;
             }
             k++;
-            this.numComparisons++;
+            this.numChanges++;
             barCollection.repaint(sortVisualizer);
             barCollection.changeCollectionColor(Color.BLACK);
         }
@@ -116,7 +128,7 @@ public class AlgorithmHandler {
             barCollection.getBars().get(k).setY(leftArrY.get(i));
             i++;
             k++;
-            this.numComparisons++;
+            this.numChanges++;
             barCollection.repaint(sortVisualizer);
             barCollection.changeCollectionColor(Color.BLACK);
         }
@@ -128,13 +140,14 @@ public class AlgorithmHandler {
             barCollection.getBars().get(k).setY(rightArrY.get(j));
             j++;
             k++;
-            this.numComparisons++;
+            this.numChanges++;
             barCollection.repaint(sortVisualizer);
             barCollection.changeCollectionColor(Color.BLACK);
         }
     }   
 
     public void mergeSort(SortVis sortVisualizer, int l, int r) {
+        long startTime = System.currentTimeMillis();
         if (l < r) {
             int m = l + (r - l) / 2;
             mergeSort(sortVisualizer, l, m);
@@ -145,5 +158,7 @@ public class AlgorithmHandler {
                 e.printStackTrace();
             }
         }
+        long endTime = System.currentTimeMillis();
+        this.completionTime = endTime - startTime;
     }
 }
