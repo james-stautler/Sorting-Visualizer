@@ -65,6 +65,13 @@ public class Collection {
         bars.get(index2).setY(y1);
     }
 
+    public void printHeights() {
+        for (int i = 0; i < bars.size(); i++) {
+            System.out.print(bars.get(i).getHeight() + ", ");
+        }
+        System.out.println();
+    }
+
     public void repaint(SortVis sortVisualizer) {
         sortVisualizer.paintImmediately(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         for (int i = 0; i < bars.size(); i++) {

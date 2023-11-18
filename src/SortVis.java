@@ -60,17 +60,20 @@ public class SortVis extends JPanel {
                 AlgorithmHandler handler = new AlgorithmHandler(barCollection);
                 if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.BUBBLE_SORT) {
                     try {
-                        handler.BubbleSort(sortVisualizer);
+                        handler.bubbleSort(sortVisualizer);
                     } catch (InterruptedException i) {
                         i.printStackTrace();
                     }
                 }
                 if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.INSERTION_SORT) {
                     try {
-                        handler.InsertionSort(sortVisualizer);
+                        handler.insertionSort(sortVisualizer);
                     } catch (InterruptedException i) {
                         i.printStackTrace();
                     }
+                }
+                if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.MERGE_SORT) {
+                    handler.mergeSort(sortVisualizer, 0, barCollection.getBars().size() - 1);
                 }
                 barCollection.changeCollectionColor(GREEN);
                 barCollection.repaint(sortVisualizer);
