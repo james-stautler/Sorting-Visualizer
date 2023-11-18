@@ -10,8 +10,18 @@ public class AlgorithmHandler {
     
     Collection barCollection;
 
+    public int numComparisons = 0;
+
     public AlgorithmHandler(Collection c) {
         this.barCollection = c;
+    }
+
+    public void resetStatistics() {
+        this.numComparisons = 0;
+    }
+
+    public int getNumComparisons() {
+        return this.numComparisons;
     }
 
     public void bubbleSort(SortVis sortVisualizer) throws InterruptedException {
@@ -19,12 +29,14 @@ public class AlgorithmHandler {
             boolean swapped = false;
             for (int j = 0; j < barCollection.getBars().size() - 1 - i; j++) {
                 if (barCollection.getBars().get(j).getHeight() > barCollection.getBars().get(j + 1).getHeight()) {
+                    this.numComparisons++;
                     barCollection.swap(j, j + 1);
                     barCollection.getBars().get(j).setColor(Color.BLACK);
                     barCollection.getBars().get(j + 1).setColor(Color.ORANGE);
                     swapped = true;
                     barCollection.repaint(sortVisualizer);                
                 }
+                this.numComparisons++; // make up for the first comparison if the condition is not met
                 barCollection.changeCollectionColor(Color.BLACK);
                 barCollection.repaint(sortVisualizer);
             }
@@ -41,12 +53,14 @@ public class AlgorithmHandler {
             barCollection.getBars().get(i).setColor(Color.ORANGE);
             barCollection.repaint(sortVisualizer);
             while (j >= 0 && barCollection.getBars().get(j).getHeight() > key) {
+                this.numComparisons++;
                 barCollection.swap(j, j + 1);
                 barCollection.getBars().get(j).setColor(Color.ORANGE);
                 barCollection.getBars().get(j + 1).setColor(Color.BLACK);
                 barCollection.repaint(sortVisualizer);
                 j--;
             }
+            this.numComparisons++;
             barCollection.getBars().get(j + 1).setHeight(key);
             barCollection.changeCollectionColor(Color.BLACK);
             barCollection.repaint(sortVisualizer);
@@ -90,6 +104,7 @@ public class AlgorithmHandler {
                 j++;
             }
             k++;
+            this.numComparisons++;
             barCollection.repaint(sortVisualizer);
             barCollection.changeCollectionColor(Color.BLACK);
         }
@@ -101,6 +116,7 @@ public class AlgorithmHandler {
             barCollection.getBars().get(k).setY(leftArrY.get(i));
             i++;
             k++;
+            this.numComparisons++;
             barCollection.repaint(sortVisualizer);
             barCollection.changeCollectionColor(Color.BLACK);
         }
@@ -112,6 +128,7 @@ public class AlgorithmHandler {
             barCollection.getBars().get(k).setY(rightArrY.get(j));
             j++;
             k++;
+            this.numComparisons++;
             barCollection.repaint(sortVisualizer);
             barCollection.changeCollectionColor(Color.BLACK);
         }

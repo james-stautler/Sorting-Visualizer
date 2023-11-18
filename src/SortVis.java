@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 @SuppressWarnings("all")
@@ -42,6 +44,7 @@ public class SortVis extends JPanel {
         JButton generateDataButton = new JButton("Generate Data");
         ActionListener generateDataListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                frame.setTitle("SORTING VISUALIZER");
                 barCollection = new Collection(NUM_BARS);
                 sortVisualizer.repaint();
             }
@@ -61,6 +64,8 @@ public class SortVis extends JPanel {
                 if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.BUBBLE_SORT) {
                     try {
                         handler.bubbleSort(sortVisualizer);
+                        frame.setTitle("TOTAL COMPARISONS: " + handler.getNumComparisons());
+                        handler.resetStatistics();
                     } catch (InterruptedException i) {
                         i.printStackTrace();
                     }
@@ -68,12 +73,16 @@ public class SortVis extends JPanel {
                 if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.INSERTION_SORT) {
                     try {
                         handler.insertionSort(sortVisualizer);
+                        frame.setTitle("TOTAL COMPARISONS: " + handler.getNumComparisons());
+                        handler.resetStatistics();
                     } catch (InterruptedException i) {
                         i.printStackTrace();
                     }
                 }
                 if (algoChoiceButton.getAlgorithm() == AlgoChoice.Algorithm.MERGE_SORT) {
                     handler.mergeSort(sortVisualizer, 0, barCollection.getBars().size() - 1);
+                    frame.setTitle("TOTAL COMPARISONS: " + handler.getNumComparisons());
+                    handler.resetStatistics();
                 }
                 barCollection.changeCollectionColor(GREEN);
                 barCollection.repaint(sortVisualizer);
